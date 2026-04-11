@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  font-family: 'Outfit', system-ui, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Mode-dependent variables */
+  --bg-color: #070a12;
+  --text-primary: #f0f9ff;
+  --text-secondary: #94a3b8;
+  --card-bg: rgba(13, 17, 23, 0.55);
+  --accent-color: #38bdf8;
+  --amber-accent: #f59e0b;
+  --gradient-accent: linear-gradient(135deg, #e2e8f0 0%, #38bdf8 50%, #f59e0b 100%);
+  --border-color: rgba(99, 179, 237, 0.1);
+  --border-highlight: rgba(255, 255, 255, 0.12);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='light'] {
+  --bg-color: #f0f4f8;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --accent-color: #0284c7;
+  --amber-accent: #d97706;
+  --gradient-accent: linear-gradient(135deg, #1e293b 0%, #0284c7 50%, #d97706 100%);
+  --border-color: rgba(9, 9, 11, 0.08);
+  --border-highlight: rgba(255, 255, 255, 0.95);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(9, 9, 11, 0.03);
+}
+
+/* ─── Fixed Grain Overlay ─────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Premium Section Header ──────────────────────────────────────── */
+.section-overline {
+  letter-spacing: 0.35em !important;
+  font-weight: 800 !important;
+  color: var(--accent-color) !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  opacity: 0.9;
+  display: block;
+}
+
+.section-title {
+  font-weight: 900 !important;
+  font-size: clamp(2.25rem, 7vw, 3.75rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.04em !important;
+  margin: 0 !important;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  text-wrap: balance;
+  transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.section-underline {
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--amber-accent), transparent);
+  border-radius: 2px;
+  opacity: 0.9;
+  margin-top: 1rem;
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  opacity: 0.2;
+  border-radius: 10px;
+}
+
+/* ─── Body: Triple-orb ambient background ────────────────────────── */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  background-image:
+    radial-gradient(ellipse 70% 60% at var(--mouse-x, 20%) var(--mouse-y, 30%), rgba(56, 189, 248, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at calc(100% - var(--mouse-x, 80%)) calc(100% - var(--mouse-y, 70%)), rgba(245, 158, 11, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 60%);
+}
+
+[data-theme='light'] body {
+  background-image:
+    radial-gradient(ellipse 70% 60% at var(--mouse-x, 20%) var(--mouse-y, 30%), rgba(2, 132, 199, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at calc(100% - var(--mouse-x, 80%)) calc(100% - var(--mouse-y, 70%)), rgba(217, 119, 6, 0.05) 0%, transparent 70%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Gradient Text ───────────────────────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shimmer Text ────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--amber-accent) 40%, var(--accent-color) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─── Glow Pulse ──────────────────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(56, 189, 248, 0.3), 0 0 20px rgba(56, 189, 248, 0.1); }
+  50%       { box-shadow: 0 0 30px rgba(56, 189, 248, 0.6), 0 0 60px rgba(56, 189, 248, 0.2); }
+}
+
+/* ─── Nav Link Underline ──────────────────────────────────────────── */
+.nav-link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--accent-color), var(--amber-accent));
+  transition: width 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  border-radius: 2px;
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline.active::after {
+  width: 60%;
+}
+
+.active-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  margin: 0 auto;
+  margin-top: 4px;
+}
+
+/* ─── Logo Dot Pulse ──────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%   { transform: scale(1);   opacity: 1;   box-shadow: 0 0 0 0   rgba(56, 189, 248, 0.6); }
+  70%  { transform: scale(1.6); opacity: 0.4; box-shadow: 0 0 0 8px rgba(56, 189, 248, 0);   }
+  100% { transform: scale(1);   opacity: 1;   box-shadow: 0 0 0 0   rgba(56, 189, 248, 0);   }
+}
+
+.logo-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  margin-left: 2px;
+  vertical-align: super;
+  font-size: 0;
+  animation: pulse-dot 2.5s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+/* ─── Float Animation ─────────────────────────────────────────────── */
+@keyframes float {
+  0%   { transform: translateY(0px)   rotate(0deg);   }
+  50%  { transform: translateY(-14px) rotate(1.5deg); }
+  100% { transform: translateY(0px)   rotate(0deg);   }
+}
+
+.float-animation {
+  animation: float 7s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+}
+
+/* ─── True Glassmorphism Panel ────────────────────────────────────── */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid var(--border-color);
+  box-shadow:
+    var(--glass-inset),
+    0 32px 64px -16px rgba(0, 0, 0, 0.35);
+}
+
+/* ─── Section Divider ─────────────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+}
+
+/* ─── 3D Tilt Card Container ──────────────────────────────────────── */
+.tilt-card-container {
+  perspective: 1200px;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
+}
+
+/* ─── Organic Card (Education) ────────────────────────────────────── */
+.organic-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px 72px 24px 72px;
+  box-shadow:
+    var(--glass-inset),
+    0 16px 40px -12px rgba(0, 0, 0, 0.35);
+  padding: 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.organic-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.organic-card:hover {
+  border-radius: 48px 24px 48px 24px;
+  border-color: var(--accent-color);
+  box-shadow:
+    var(--glass-inset),
+    0 40px 80px -20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px var(--accent-color);
+  transform: translateY(-8px);
+}
+
+.organic-card:hover::before {
+  opacity: 1;
+}
+
+.organic-card .icon-wrapper {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 50% 30% 50% 30%;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  transform: translateZ(50px);
+}
+
+.organic-card:hover .icon-wrapper {
+  border-radius: 30% 50% 30% 50%;
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateZ(60px) scale(1.08);
+}
+
+.organic-card .degree-text {
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+  transform: translateZ(40px);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.organic-card .institution-text {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  transform: translateZ(30px);
+  max-width: 22ch;
+  line-height: 1.5;
+}
+
+/* ─── Spotlight Card Hover (pointer-tracked border glow) ─────────── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--card-mouse-x, 50%) var(--card-mouse-y, 50%),
+    rgba(56, 189, 248, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── Orbit Ring CSS Animations ──────────────────────────────────── */
+/* Uses standalone `rotate` property (CSS Transforms Level 2) — no
+   transform-stacking conflict with the centering translate on the host. */
+.orbit-ring-cw {
+  animation-name: orbit-spin-cw;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+.orbit-ring-ccw {
+  animation-name: orbit-spin-ccw;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes orbit-spin-cw  { from { rotate: 0deg;    } to { rotate: 360deg;  } }
+@keyframes orbit-spin-ccw { from { rotate: 0deg;    } to { rotate: -360deg; } }
+
+/* ─── Magnetic Card ───────────────────────────────────────────────── */
+/* transform is owned entirely by GSAP on magnetic elements */
+.magnetic-target {
+  will-change: transform;
+}
+.magnetic-target:hover {
+  /* suppress any CSS hover transform so GSAP owns movement */
+  transform: none !important;
+}
+
+/* ─── Reduced Motion ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring-cw,
+  .orbit-ring-ccw {
+    animation: none;
+  }
+  .float-animation { animation: none; }
+  .shimmer-text    { animation: none; }
+  @keyframes pulse-dot { 0%, 100% { transform: none; opacity: 1; box-shadow: none; } }
+}
+
+/* ─── Pill Badge ──────────────────────────────────────────────────── */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.9em;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+}
