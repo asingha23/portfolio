@@ -510,7 +510,7 @@ const Hero = () => {
         onClick={() => handleScrollTo('experience')}
       >
         <Typography variant="caption" sx={{ letterSpacing: 4, fontWeight: 900, textTransform: 'uppercase' }}>Scroll</Typography>
-        <Box sx={{ width: 1, height: 40, bgcolor: 'primary.main', borderRadius: 1 }} />
+        {/* <Box sx={{ width: 1, height: 40, bgcolor: 'primary.main', borderRadius: 1 }} /> */}
       </Box>
     </Box>
   );
