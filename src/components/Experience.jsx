@@ -21,25 +21,25 @@ const experiences = [
   {
     role: 'Guest Zoology Faculty',
     company: 'Dirasa Pvt. School',
-    duration: '2023 - 2024',
+    duration: '2024 - Continue',
     details: 'Delivering specialized zoological curriculum and mentoring advanced students.',
   },
   {
     role: 'Guest Zoology Faculty',
     company: 'NM Girls Academy',
-    duration: '2022 - 2023',
+    duration: '2022 - Continue',
     details: 'Focused on human anatomy and physiological sciences education.',
   },
   {
     role: 'Guest Zoology Faculty',
     company: 'C.A Gajole',
-    duration: '2021 - 2022',
+    duration: '2025 - Continue',
     details: 'Instructing biological diversity and genetic fundamentals.',
   },
   {
     role: 'Zoology Faculty',
     company: 'NCSM WB GOVT.',
-    duration: '2019 - 2021',
+    duration: '2026 - Continue',
     details: 'Government-affiliated academic role focused on regional science education.',
   },
   {

@@ -40,7 +40,7 @@ const Hero = () => {
       // 1.1 Count-up Animation for Stats
       const statNumbers = [
         { el: ".stat-num-1", value: 9 },
-        { el: ".stat-num-2", value: 34 },
+        { el: ".stat-num-2", value: 61 },
         { el: ".stat-num-3", value: 5 }
       ];
 

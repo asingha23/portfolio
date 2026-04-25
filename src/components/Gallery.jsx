@@ -2,14 +2,14 @@ import React from 'react';
 import { Box, Container, Typography, useTheme } from '@mui/material';
 import SectionHeader from './SectionHeader';
 
-import gallery1 from '../assets/gallery1.png';
-import gallery2 from '../assets/gallery2.png';
-import gallery3 from '../assets/gallery3.png';
+import gallery1 from '../assets/gallery1.jpg';
+import gallery2 from '../assets/gallery2.jpg';
+import gallery3 from '../assets/gallery3.jpg';
 
 const galleryItems = [
-  { img: gallery1, title: 'Academic Lectures', subtitle: 'Teaching Zoology in Modern Classroom Context' },
-  { img: gallery2, title: 'Scientific Research', subtitle: 'Laboratory Analysis & Medical Research' },
-  { img: gallery3, title: 'Professional Seminars', subtitle: 'National Health & Biological Science Summits' },
+  { img: gallery1, title: 'Medical Education', subtitle: 'Deep Dive into Human Anatomy & Physiology' },
+  { img: gallery2, title: 'Biological Research', subtitle: 'Molecular Biology & Clinical Research Analysis' },
+  { img: gallery3, title: 'Best Faculty Award', subtitle: 'Recognized for Excellence in Academic Instruction' },
 ];
 
 const Gallery = () => {
@@ -49,7 +49,7 @@ const Gallery = () => {
           >
             <img
               src={gallery1}
-              alt="Academic Lectures"
+              alt="Medical Education"
               style={{
                 width: '100%',
                 height: '100%',
@@ -67,10 +67,10 @@ const Gallery = () => {
               boxSizing: 'border-box',
             }}>
               <Typography variant="h5" sx={{ color: '#fff', fontWeight: 900, mb: 0.5 }}>
-                Academic Lectures
+                Medical Education
               </Typography>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.65)' }}>
-                Teaching Zoology in Modern Classroom Context
+                Deep Dive into Human Anatomy & Physiology
               </Typography>
             </div>
           </div>
@@ -89,7 +89,7 @@ const Gallery = () => {
           >
             <img
               src={gallery2}
-              alt="Scientific Research"
+              alt="Biological Research"
               style={{
                 width: '100%',
                 height: '100%',
@@ -107,10 +107,10 @@ const Gallery = () => {
               boxSizing: 'border-box',
             }}>
               <Typography variant="h6" sx={{ color: '#fff', fontWeight: 900, mb: 0.5 }}>
-                Scientific Research
+                Biological Research
               </Typography>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.8rem' }}>
-                Laboratory Analysis & Medical Research
+                Molecular Biology & Clinical Research Analysis
               </Typography>
             </div>
           </div>
@@ -129,7 +129,7 @@ const Gallery = () => {
           >
             <img
               src={gallery3}
-              alt="Professional Seminars"
+              alt="Best Faculty Award"
               style={{
                 width: '100%',
                 height: '100%',
@@ -147,10 +147,10 @@ const Gallery = () => {
               boxSizing: 'border-box',
             }}>
               <Typography variant="h6" sx={{ color: '#fff', fontWeight: 900, mb: 0.5 }}>
-                Professional Seminars
+                Best Faculty Award
               </Typography>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.8rem' }}>
-                National Health & Biological Science Summits
+                Recognized for Excellence in Academic Instruction
               </Typography>
             </div>
           </div>

@@ -23,6 +23,23 @@ const Contact = () => {
   const formRef = useRef(null);
   const bgIcon1 = useRef(null);
   const bgIcon2 = useRef(null);
+  const [formData, setFormData] = React.useState({
+    name: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleWhatsAppSubmit = (e) => {
+    e.preventDefault();
+    const phoneNumber = "918927977836"; // International format for India
+    const text = `*New Inquiry from Portfolio*%0A%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Subject:* ${formData.subject}%0A*Message:* ${formData.message}`;
+    window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -163,7 +180,7 @@ const Contact = () => {
               {/* Contact Info Cards */}
               <Stack spacing={2.5}>
                 {[
-                  { icon: <PhoneIphoneIcon />, label: 'Phone', value: '8927977836', color: theme.palette.primary.main },
+                  { icon: <PhoneIphoneIcon />, label: 'Phone/WhatsApp', value: '8927977836', color: theme.palette.primary.main },
                   { icon: <ContactMailIcon />, label: 'Email', value: 'asingha160496@gmail.com', color: '#f59e0b' },
                   { icon: <LocationOnIcon />, label: 'Address', value: 'Kaliyaganj, WB, 733129', color: '#10b981' }
                 ].map((item, i) => (
@@ -260,90 +277,131 @@ const Contact = () => {
               backdropFilter: 'blur(20px)',
               backgroundImage: 'none'
             }}>
-              <Typography variant="h3" sx={{ mb: 1.5, fontWeight: 900, letterSpacing: -1.5, textAlign: { xs: 'center', md: 'left' }, color: 'text.primary', fontSize: { xs: '1.75rem', md: '2.25rem' } }}>
+              <Typography variant="h3" sx={{ mb: 1, fontWeight: 950, letterSpacing: -1.5, textAlign: { xs: 'center', md: 'left' }, color: 'text.primary', fontSize: { xs: '2rem', md: '2.5rem' } }}>
                 Send a Message
               </Typography>
-              <Typography variant="body2" sx={{ mb: 5, color: 'text.secondary', opacity: 0.55, textAlign: { xs: 'center', md: 'left' }, fontSize: '0.9rem' }}>
-                I respond within 24 hours.
+              <Typography variant="body2" sx={{ mb: 6, color: 'text.secondary', fontWeight: 500, opacity: 0.6, textAlign: { xs: 'center', md: 'left' }, fontSize: '1rem', maxWidth: '400px' }}>
+                I usually respond within 24 hours. Looking forward to hearing from you.
               </Typography>
               
-              <Box component="form" onSubmit={(e) => e.preventDefault()}>
+              <Box component="form" onSubmit={handleWhatsAppSubmit}>
                 <Stack spacing={3}>
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
-                    <TextField 
-                      fullWidth 
-                      label="Full Name" 
-                      variant="outlined"
-                      size="small"
-                      sx={{ 
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 3,
-                          fontSize: '0.95rem',
-                          bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(9,9,11,0.02)',
-                          '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'primary.main' },
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1.5, borderColor: 'primary.main' },
-                          '&.Mui-focused': { boxShadow: isDark ? '0 0 0 3px rgba(56,189,248,0.12)' : '0 0 0 3px rgba(2,132,199,0.1)', borderRadius: 3 }
-                        },
-                        '& .MuiInputLabel-root': { fontSize: '0.9rem' }
-                      }} 
-                    />
-                    <TextField 
-                      fullWidth 
-                      label="Email Address" 
-                      variant="outlined"
-                      size="small"
-                      sx={{ 
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 3,
-                          fontSize: '0.95rem',
-                          bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(9,9,11,0.02)',
-                          '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'primary.main' },
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1.5, borderColor: 'primary.main' },
-                          '&.Mui-focused': { boxShadow: isDark ? '0 0 0 3px rgba(56,189,248,0.12)' : '0 0 0 3px rgba(2,132,199,0.1)', borderRadius: 3 }
-                        },
-                        '& .MuiInputLabel-root': { fontSize: '0.9rem' }
-                      }} 
-                    />
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="caption" sx={{ display: 'block', mb: 1, ml: 1, fontWeight: 700, color: 'text.secondary', letterSpacing: 1.5, textTransform: 'uppercase', fontSize: '0.65rem', opacity: 0.8 }}>Full Name</Typography>
+                      <TextField 
+                        fullWidth 
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="e.g. Shruti Das" 
+                        variant="outlined"
+                        required
+                        sx={{ 
+                          '& .MuiOutlinedInput-root': {
+                            borderRadius: '16px',
+                            fontSize: '0.95rem',
+                            bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                            transition: 'all 0.3s ease',
+                            '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' },
+                            '&:hover fieldset': { borderColor: 'primary.main' },
+                            '&.Mui-focused fieldset': { borderWidth: 1, borderColor: 'primary.main' },
+                            '&.Mui-focused': { bgcolor: isDark ? 'rgba(56,189,248,0.02)' : 'rgba(2,132,199,0.02)', boxShadow: isDark ? '0 0 0 4px rgba(56,189,248,0.1)' : '0 0 0 4px rgba(2,132,199,0.08)' }
+                          }
+                        }} 
+                      />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Typography variant="caption" sx={{ display: 'block', mb: 1, ml: 1, fontWeight: 700, color: 'text.secondary', letterSpacing: 1.5, textTransform: 'uppercase', fontSize: '0.65rem', opacity: 0.8 }}>Phone Number</Typography>
+                      <TextField 
+                        fullWidth 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="e.g. +91 98765 43210" 
+                        variant="outlined"
+                        type="tel"
+                        required
+                        sx={{ 
+                          '& .MuiOutlinedInput-root': {
+                            borderRadius: '16px',
+                            fontSize: '0.95rem',
+                            bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                            transition: 'all 0.3s ease',
+                            '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' },
+                            '&:hover fieldset': { borderColor: 'primary.main' },
+                            '&.Mui-focused fieldset': { borderWidth: 1, borderColor: 'primary.main' },
+                            '&.Mui-focused': { bgcolor: isDark ? 'rgba(56,189,248,0.02)' : 'rgba(2,132,199,0.02)', boxShadow: isDark ? '0 0 0 4px rgba(56,189,248,0.1)' : '0 0 0 4px rgba(2,132,199,0.08)' }
+                          }
+                        }} 
+                      />
+                    </Box>
                   </Stack>
                   
-                  <TextField 
-                    fullWidth 
-                    label="Subject" 
-                    variant="outlined"
-                    size="small"
-                    sx={{ 
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: 3,
-                        fontSize: '0.95rem',
-                        bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(9,9,11,0.02)',
-                        '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'primary.main' },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1.5 }
-                      },
-                      '& .MuiInputLabel-root': { fontSize: '0.9rem' }
-                    }} 
-                  />
+                  <Box>
+                    <Typography variant="caption" sx={{ display: 'block', mb: 1, ml: 1, fontWeight: 700, color: 'text.secondary', letterSpacing: 1.5, textTransform: 'uppercase', fontSize: '0.65rem', opacity: 0.8 }}>Subject</Typography>
+                    <TextField 
+                      fullWidth 
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="I need help with your course..." 
+                      variant="outlined"
+                      required
+                      sx={{ 
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '16px',
+                          fontSize: '0.95rem',
+                          bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                          transition: 'all 0.3s ease',
+                          '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' },
+                          '&:hover fieldset': { borderColor: 'primary.main' },
+                          '&.Mui-focused fieldset': { borderWidth: 1, borderColor: 'primary.main' },
+                          '&.Mui-focused': { bgcolor: isDark ? 'rgba(56,189,248,0.02)' : 'rgba(2,132,199,0.02)', boxShadow: isDark ? '0 0 0 4px rgba(56,189,248,0.1)' : '0 0 0 4px rgba(2,132,199,0.08)' }
+                        }
+                      }} 
+                    />
+                  </Box>
                   
-                  <TextField 
-                    fullWidth 
-                    multiline 
-                    rows={5} 
-                    label="Describe your interest..."
-                    variant="outlined"
-                    sx={{ 
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: 3,
-                        fontSize: '0.95rem',
-                        bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(9,9,11,0.02)',
-                        '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'primary.main' },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1.5 }
-                      },
-                      '& .MuiInputLabel-root': { fontSize: '0.9rem' }
-                    }} 
-                  />
+                  <Box>
+                    <Typography variant="caption" sx={{ display: 'block', mb: 1, ml: 1.5, fontWeight: 700, color: 'text.secondary', letterSpacing: 1.5, textTransform: 'uppercase', fontSize: '0.65rem', opacity: 0.8 }}>Message</Typography>
+                    <TextField 
+                      fullWidth 
+                      multiline 
+                      rows={6} 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Write your message here..."
+                      variant="outlined"
+                      required
+                      sx={{ 
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '20px',
+                          fontSize: '0.95rem',
+                          bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                          transition: 'all 0.4s cubic-bezier(0.32, 0.72, 0, 1)',
+                          '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' },
+                          '&:hover fieldset': { borderColor: 'primary.main' },
+                          '&.Mui-focused fieldset': { borderWidth: 1, borderColor: 'primary.main' },
+                          '&.Mui-focused': { 
+                            bgcolor: isDark ? 'rgba(56,189,248,0.02)' : 'rgba(2,132,199,0.02)', 
+                            boxShadow: isDark ? '0 0 0 4px rgba(56,189,248,0.1)' : '0 0 0 4px rgba(2,132,199,0.08)' 
+                          },
+                          '& input::placeholder, & textarea::placeholder': {
+                            color: 'text.secondary',
+                            opacity: 0.4,
+                            fontWeight: 400
+                          }
+                        }
+                      }} 
+                    />
+                  </Box>
 
                   <Box sx={{ pt: 2 }}>
                     <Button 
                       fullWidth 
+                      type="submit"
                       variant="contained" 
                       size="large" 
                       sx={{ 
