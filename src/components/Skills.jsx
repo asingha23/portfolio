@@ -241,7 +241,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <Box ref={sectionRef} sx={{ py: 15, position: 'relative', overflow: 'hidden' }}>
+    <Box ref={sectionRef} component="section" sx={{ py: 15, position: 'relative', overflow: 'hidden' }}>
       {/* Background Decor — kept for GSAP parallax */}
       <Box className="skill-bg-parallax-1" sx={{ position: 'absolute', top: '10%', right: '5%', opacity: isDark ? 0.05 : 0.02, zIndex: 0 }}>
         <ScienceIcon sx={{ fontSize: 200, color: 'primary.main' }} />

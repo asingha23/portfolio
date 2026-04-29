@@ -161,7 +161,7 @@ const Education = () => {
   };
 
   return (
-    <Box id="education" sx={{ py: { xs: 12, md: 20 }, position: 'relative', overflow: 'hidden' }}>
+    <Box id="education" component="section" sx={{ py: { xs: 12, md: 20 }, position: 'relative', overflow: 'hidden' }}>
       {/* Background Decor */}
       <Box className="edu-bg-parallax" sx={{ position: 'absolute', top: '15%', left: '50%', transform: 'translateX(-50%)', opacity: 0.05, zIndex: 0 }}>
         <SchoolIcon sx={{ fontSize: 400, color: 'primary.main' }} />

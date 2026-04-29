@@ -13,7 +13,7 @@ import DnaHelix from './components/decorative/DnaHelix';
 import HexGrid from './components/decorative/HexGrid';
 import OrbitRings from './components/decorative/OrbitRings';
 import FloatingDots from './components/decorative/FloatingDots';
-import { Box, Fab, Zoom, useScrollTrigger, ThemeProvider, CssBaseline } from '@mui/material';
+import { Box, Fab, Zoom, useScrollTrigger, ThemeProvider, CssBaseline, Typography } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ScienceIcon from '@mui/icons-material/Science';
 import PsychologyIcon from '@mui/icons-material/Psychology';
@@ -120,16 +120,6 @@ function App() {
           />
         </ParallaxBackdrop>
 
-        {/* 5. Science Icon — mid-right accent */}
-        <ParallaxBackdrop speed={3} top="55%" right="8%" rotate={180} opacity={opacityBase} mouseDepth={0.02}>
-          <ScienceIcon sx={{ fontSize: 220, color: 'primary.main' }} />
-        </ParallaxBackdrop>
-
-        {/* 6. Psychology Icon — upper-right accent */}
-        <ParallaxBackdrop speed={4.5} top="20%" right="22%" rotate={15} opacity={opacityBase * 0.8} mouseDepth={0.025}>
-          <PsychologyIcon sx={{ fontSize: 160, color: 'primary.dark' }} />
-        </ParallaxBackdrop>
-
         {/* ── Sections ──────────────────────────────────────────────── */}
         <Navbar mode={mode} toggleMode={toggleMode} />
         <Hero />
@@ -153,6 +143,14 @@ function App() {
         <Box sx={{ height: '1px', background: `linear-gradient(90deg, transparent, ${divider}, transparent)` }} />
 
         <Contact />
+
+        <footer>
+          <Box sx={{ py: 6, textAlign: 'center', opacity: 0.5 }}>
+            <Typography variant="body2">
+              © {new Date().getFullYear()} Abhishek Singha. All rights reserved.
+            </Typography>
+          </Box>
+        </footer>
 
         <ScrollTop mode={mode}>
           <Fab

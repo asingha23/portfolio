@@ -83,7 +83,7 @@ const Certifications = () => {
   };
 
   return (
-    <Box id="certifications" ref={sectionRef} sx={{ py: { xs: 10, md: 15 }, position: 'relative', overflow: 'hidden' }}>
+    <Box id="certifications" component="section" ref={sectionRef} sx={{ py: { xs: 10, md: 15 }, position: 'relative', overflow: 'hidden' }}>
 
       {/* HexGrid — top-right molecular texture */}
       <Box sx={{ position: 'absolute', top: '-4%', right: '-5%', opacity: isDark ? 0.04 : 0.025, pointerEvents: 'none', zIndex: 0 }}>

@@ -184,6 +184,7 @@ const Navbar = ({ mode, toggleMode }) => {
       <AppBar 
         ref={navRef}
         position="fixed" 
+        component="nav"
         sx={{ 
           bgcolor: 'transparent',
           boxShadow: 'none',

@@ -106,7 +106,7 @@ const Awards = () => {
   }, []);
 
   return (
-    <Box id="awards" ref={sectionRef} sx={{ py: { xs: 12, md: 20 }, bgcolor: 'background.default', color: 'text.primary', position: 'relative', overflow: 'hidden' }}>
+    <Box id="awards" component="section" ref={sectionRef} sx={{ py: { xs: 12, md: 20 }, bgcolor: 'background.default', color: 'text.primary', position: 'relative', overflow: 'hidden' }}>
 
       {/* Central ambient gradient */}
       <Box sx={{

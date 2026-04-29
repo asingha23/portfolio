@@ -207,7 +207,6 @@ const Hero = () => {
     <Box
       ref={sectionRef}
       id="home"
-      component="section"
       sx={{
         padding: { xs: '120px 24px', md: '180px 0' },
         minHeight: '100dvh',

@@ -36,6 +36,7 @@ const Gallery = () => {
   return (
     <Box
       id="gallery"
+      component="section"
       sx={{ py: { xs: 12, md: 20 }, position: 'relative', zIndex: 1, isolation: 'isolate' }}
     >
       <Container maxWidth="lg">

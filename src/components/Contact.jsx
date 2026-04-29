@@ -111,6 +111,7 @@ const Contact = () => {
     <Box 
       ref={sectionRef}
       id="contact" 
+      component="section"
       sx={{ py: { xs: 12, md: 20 }, position: 'relative', overflow: 'hidden', bgcolor: 'background.default' }}
     >
       {/* Background Icons with enhanced Parallax */}

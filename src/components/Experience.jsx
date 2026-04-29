@@ -154,7 +154,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <Box id="experience" ref={sectionRef} sx={{ py: { xs: 10, md: 20 }, position: 'relative', overflow: 'hidden' }}>
+    <Box id="experience" component="section" ref={sectionRef} sx={{ py: { xs: 10, md: 20 }, position: 'relative', overflow: 'hidden' }}>
 
       {/* Decorative HexGrid — left background */}
       <Box sx={{ position: 'absolute', left: '-5%', top: '10%', opacity: isDark ? 0.04 : 0.025, pointerEvents: 'none', zIndex: 0 }}>
