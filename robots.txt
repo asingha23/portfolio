@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asingha23.github.io/portfolio/sitemap.xml
